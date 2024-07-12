@@ -1,4 +1,5 @@
-'use strict'
+'use strict' // Comando para adicionar reclamacao de comandos fora do padrão no js
+
 //Importa o express para o arquivo
 const express = require('express');
 // Cria uma aplicação express
