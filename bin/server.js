@@ -25,46 +25,43 @@ server.on('listening', onListening);
 console.log('Api esta rodando na porta: ' + port);
 
 // Funcão criada apenas para verificar se a porta que esta sendo buscada nas variaveis de ambiente é uma porta valida
-function normalizePort(val){
+function normalizePort(val) {
     const port = parseInt(val, 10);
-    
-    if(isNaN(port)){
+
+    if (isNaN(port))
         return val;
-    }
-    else if( port >= 0){
+    else if (port >= 0)
         return port;
-    }
 
     return false;
 }
 
 function onError(error) {
-    if(error.syscall !== 'listen'){
+    if (error.syscall !== 'listen')
         throw error;
-    }
 
     const bind = typeof port === 'string' ?
         'Pipe ' + port :
         'Port ' + port;
 
-        switch (error.code) {
-            case 'EACESS' :
-                console.log(bind + ' Requires elevated privileges');
-                process.exit(1);
-                break;
-            case 'EADDRINUSE' :
-                console.log(bind + ' is already un use');
-                process.exit(1);
-                break;
-            default:
-                throw error;
-        }
+    switch (error.code) {
+        case 'EACESS':
+            console.log(bind + ' Requires elevated privileges');
+            process.exit(1);
+            break;
+        case 'EADDRINUSE':
+            console.log(bind + ' is already un use');
+            process.exit(1);
+            break;
+        default:
+            throw error;
+    }
 }
 
 function onListening() {
     const addr = server.address();
-    const bind = typeof addr === 'string' 
-    ? 'pipe ' + addr 
-    : 'port ' + addr.port;
+    const bind = typeof addr === 'string'
+        ? 'pipe ' + addr
+        : 'port ' + addr.port;
     debug('Listening on ' + bind);
 }
