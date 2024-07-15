@@ -6,8 +6,6 @@ const express = require('express');
 const bodyparser = require('body-parser');
 // Cria uma aplicação express
 const app = express();
-// Cria uma variavel e importa o pacote body-parser
-const router = express.Router();
 
 // Carregar as rotas
 const indexRoute = require('./routes/index-route');
@@ -18,12 +16,9 @@ app.use(bodyparser.json());
 // Adiciona um middleware que adiciona codificação de URL ao body-parser
 app.use(bodyparser.urlencoded({ extended: false}));
 
-
-
-
 // Adiciona um Middleware que expõem o endpoint ~Health~ com o caminho indicando o caminho '/' para acessalo
 app.use('/', indexRoute);
 // Adiciona um Middleware que expõem todos os endpoints de product
-app.use('/products', productRoutes)
+app.use('/products', productRoutes);
 
 module.exports = app;
